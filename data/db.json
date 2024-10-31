@@ -1,9 +1,25 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "email": "user@example.com",
-      "password": "$2a$12$sD1HXyzBggT8MiPjyA5Q5un1SCkL.15dsZjNXmwXqu.5C7Ei2/CGy"
-    }
-  ]
+    "users": [
+        {
+            "id": "1",
+            "email": "user1@example.com",
+            "password": "$2b$10$E9.PS5S3FB8EDpU9b/Z9tO0p6BR.U9Eykh1NYVmzAiWQidKx4AoVW", 
+            "name": "Usuario Uno",
+            "balance": 100
+        },
+        {
+            "id": "2",
+            "email": "user2@example.com",
+            "password": "$2b$10$E9.PS5S3FB8EDpU9b/Z9tO0p6BR.U9Eykh1NYVmzAiWQidKx4AoVW",
+            "name": "Usuario Dos",
+            "balance": 200
+        },
+        {
+            "id": "3",
+            "email": "user3@example.com",
+            "password": "$2b$10$E9.PS5S3FB8EDpU9b/Z9tO0p6BR.U9Eykh1NYVmzAiWQidKx4AoVW", 
+            "name": "Usuario Tres",
+            "balance": 300
+        }
+    ]
 }

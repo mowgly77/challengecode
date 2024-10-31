@@ -1,36 +1,41 @@
-import { login } from '../src/api';
-
-// Mock de la interfaz Request de Next.js
-const mockRequest = (body: any) => {
-  return {
-    json: jest.fn().mockResolvedValue(body), // Mock para el método json
-  } as unknown as Request; // Forzar el tipo a Request
-};
+import { login } from '../src/api'; // Ajusta la ruta según tu estructura
+import db from '../src/db';
+import bcrypt from 'bcrypt';
 
 describe('API Tests', () => {
-  it('debería iniciar sesión correctamente', async () => {
-    const req = mockRequest({
-      email: 'user@example.com',
-      password: 'password', // La contraseña en texto plano
+    beforeAll(() => {
+        // Asegúrate de que la base de datos tenga un usuario válido para las pruebas
+        const hashedPassword = bcrypt.hashSync('password123', 10); // Cambia esto según tu lógica de hash
+        db.get('users').push({
+            id: '1',
+            email: 'user@example.com',
+            password: hashedPassword,
+            name: 'Test User',
+            balance: 100
+        }).write(); // Escribe en la base de datos simulada
     });
 
-    const response = await login(req); // Aquí se usa req que simula el Request de Next.js
+    it('debería iniciar sesión correctamente', async () => {
+        const req = {
+            json: async () => ({ email: 'user@example.com', password: 'password123' }), // Credenciales correctas
+        } as Request;
 
-    // Verifica que la respuesta contenga el email correcto
-    const responseBody = await response.json(); // Convierte la respuesta a JSON
-    expect(responseBody).toHaveProperty('email', 'user@example.com'); // Verifica el contenido
-  });
+        const response = await login(req);
+        const responseBody = await response.json(); // Convierte la respuesta a JSON
 
-  it('debería retornar un error con credenciales incorrectas', async () => {
-    const req = mockRequest({
-      email: 'wrong@example.com',
-      password: 'wrongpassword',
+        // Verifica que la respuesta contenga el email correcto
+        expect(responseBody).toHaveProperty('email', 'user@example.com'); // Verifica el contenido
     });
 
-    const response = await login(req); // Aquí se usa req que simula el Request de Next.js
+    it('debería retornar un error con credenciales incorrectas', async () => {
+        const req = {
+            json: async () => ({ email: 'user@example.com', password: 'wrongpassword' }), // Credenciales incorrectas
+        } as Request;
 
-    // Verifica que se retorne un error
-    const responseBody = await response.json(); // Convierte la respuesta a JSON
-    expect(responseBody).toHaveProperty('error', 'Credenciales incorrectas');
-  });
+        const response = await login(req);
+        const responseBody = await response.json(); // Convierte la respuesta a JSON
+
+        // Verifica que la respuesta contenga un error
+        expect(responseBody).toHaveProperty('error', 'Credenciales incorrectas');
+    });
 });
