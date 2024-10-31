@@ -13,17 +13,22 @@ interface User {
 
 // Iniciar sesión
 export const login = async (req: Request) => {
-    const body: { email: string; password: string } = await req.json();
-    const { email, password } = body;
+  const body: { email?: string; password?: string } = await req.json();
+  console.log('Login request body:', body);
 
-    // Busca el usuario en la base de datos usando un objeto de búsqueda
-    const user = db.get('users').find({ email }).value(); 
+  // Verificar si se proporcionaron email y password
+  if (!body.email || !body.password) {
+      return NextResponse.json({ error: 'Credenciales incorrectas' }, { status: 401 });
+  }
 
-    if (user && bcrypt.compareSync(password, user.password)) {
-        return NextResponse.json({ email: user.email });
-    } else {
-        return NextResponse.json({ error: 'Credenciales incorrectas' }, { status: 401 });
-    }
+  const user = db.get('users').find({ email: body.email }).value();
+  console.log('User found:', user);
+
+  if (user && bcrypt.compareSync(body.password, user.password)) {
+      return NextResponse.json({ email: user.email });
+  } else {
+      return NextResponse.json({ error: 'Credenciales incorrectas' }, { status: 401 });
+  }
 };
 
 // Obtener detalles del usuario
@@ -82,3 +87,7 @@ export const registerUser = async (req: Request) => {
 
     return NextResponse.json(newUser, { status: 201 });
 };
+
+export async function GET() {
+  return NextResponse.json({ message: "API is working!" });
+}

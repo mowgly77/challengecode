@@ -1,9 +1,16 @@
 {
   "users": [
     {
-      "id": "1",
-      "email": "user@example.com",
-      "password": "$2b$10$vY9Sm11AxGdKkGI/B1h1AuhdJY8u99LRWjJeE19wXvWVf5aemyZta",
+      "id": "2",
+      "email": "user2@example.com",
+      "password": "$2b$10$bI/ViZdZS6g1eRU1OlS2t.kuu5ioSsSfQePMjtGSB21zx4ZbH4r8.",
+      "name": "Test User",
+      "balance": 100
+    },
+    {
+      "id": "3",
+      "email": "user3@example.com",
+      "password": "$2b$10$Tvg8cM0O/qL9hxbTYdDgjewQz.hrObz.tB2awkxEJO7ZkShtQPEpm",
       "name": "Test User",
       "balance": 100
     }

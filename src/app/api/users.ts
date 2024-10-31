@@ -1,11 +1,12 @@
+// src/app/api/users.ts
 import { NextResponse } from 'next/server';
 import { login, getUserDetails, updateUserDetails, registerUser } from '../../../src/api';
 
 export async function POST(req: Request) {
     const body = await req.json();
+    console.log('POST /api/users called');
     
     if (body.email && body.password) {
-        // Llama a login con solo req
         return login(req); 
     } else {
         return registerUser(req);
@@ -13,11 +14,9 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-    // Verifica si 'id' está presente en la consulta
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('id');
 
-    // Verifica si userId está presente antes de llamar a getUserDetails
     if (userId) {
         return getUserDetails(req);
     } else {
@@ -26,11 +25,9 @@ export async function GET(req: Request) {
 }
 
 export async function PUT(req: Request) {
-    // Verifica si 'id' está presente en la consulta
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('id');
 
-    // Verifica si userId está presente antes de llamar a updateUserDetails
     if (userId) {
         return updateUserDetails(req);
     } else {
