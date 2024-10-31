@@ -111,7 +111,7 @@ If you would like to contribute to the project, feel free to submit a pull reque
 ## Contact
 
 - **Name**: Roberto Erick Alcántar Rodríguez
-- **Email**: robertoe.lacantara
+- **Email**: robertoe.alcantara@gmail.com
 - **GitHub**: [mowgly77](https://github.com/mowgly77)
 
 ## License
