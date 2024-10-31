@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Challenge Code
 
-## Getting Started
+## Descripción
 
-First, run the development server:
+Challenge Code es una aplicación web que permite a los usuarios iniciar sesión, verificar su saldo y actualizar sus detalles personales. Está desarrollada utilizando Node.js, Next.js y LowDB, ofreciendo una API para gestionar las operaciones del usuario.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Características
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Iniciar sesión mediante correo electrónico y contraseña.
+- Verificar el saldo del usuario.
+- Actualizar detalles del usuario.
+- API RESTful para manejar las operaciones de usuario.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologías Utilizadas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Frontend**: React (Next.js)
+- **Backend**: Node.js
+- **Base de Datos**: LowDB
+- **Autenticación**: bcrypt para encriptar contraseñas.
 
-## Learn More
+## URLs
 
-To learn more about Next.js, take a look at the following resources:
+- **Aplicación en Vercel**: [challengecode-eight.vercel.app](https://challengecode-eight.vercel.app/)
+- **API**: 
+  - `GET /api/test` - Verifica que la API está funcionando.
+  - `POST /api/users` - Inicia sesión o registra un nuevo usuario.
+  - `GET /api/users?id={userId}` - Obtiene detalles del usuario.
+  - `PUT /api/users?id={userId}` - Actualiza los detalles del usuario.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Instalación
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clona el repositorio:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git clone https://github.com/mowgly77/challenge-code.git
+   cd challenge-code
