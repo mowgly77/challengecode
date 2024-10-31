@@ -1,10 +1,9 @@
 {
-    "users": [
-      {
-        "id": "1",
-        "email": "user@example.com",
-        "password": "$2b$10$A8hZSlM/D4dr4m9V4V4uGeHhzD9WJ3U0hP6BfB3NSvUmjO7SWBYxK"
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": "1",
+      "email": "user@example.com",
+      "password": "$2a$12$sD1HXyzBggT8MiPjyA5Q5un1SCkL.15dsZjNXmwXqu.5C7Ei2/CGy"
+    }
+  ]
+}

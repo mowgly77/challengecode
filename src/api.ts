@@ -6,12 +6,15 @@ import { NextResponse } from 'next/server';
 export const login = async (req: Request) => {
   const body = await req.json();
   const { email, password } = body;
+
+  // Busca el usuario en la base de datos
   const user = db.get('users').find({ email }).value();
 
+  // Comprueba si el usuario existe y si la contraseña es correcta
   if (user && bcrypt.compareSync(password, user.password)) {
-    return NextResponse.json(user);
+    return NextResponse.json({ email: user.email }); // Respuesta exitosa
   } else {
-    return NextResponse.json({ error: 'Credenciales incorrectas' }, { status: 401 });
+    return NextResponse.json({ error: 'Credenciales incorrectas' }, { status: 401 }); // Respuesta de error
   }
 };
 

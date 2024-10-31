@@ -4,7 +4,8 @@ import { login, getUserDetails, updateUserDetails, registerUser } from '../../..
 export async function POST(req: Request) {
   const body = await req.json();
   if (body.email && body.password) {
-    return login(req);
+    // Llama a login con solo req
+    return login(req); 
   } else {
     return registerUser(req);
   }

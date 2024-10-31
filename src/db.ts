@@ -8,12 +8,13 @@ interface User {
   password: string;
 }
 
+// Interface para la base de datos
 interface Database {
   users: User[];
 }
 
-// Crea el adaptador para LowDB
-const adapter = new FileSync('data/db.json');
+// Crea el adaptador de archivo
+const adapter = new FileSync('data/db.json'); // Elimina <Database>
 const db = low(adapter);
 
 // Establecer la estructura inicial de la base de datos
