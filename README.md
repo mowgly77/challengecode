@@ -1,35 +1,35 @@
 # Challenge Code
 
-## Descripción
+## Description
 
-Challenge Code es una aplicación web que permite a los usuarios iniciar sesión, verificar su saldo y actualizar sus detalles personales. Está desarrollada utilizando Node.js, Next.js y LowDB, ofreciendo una API para gestionar las operaciones del usuario.
+Challenge Code is a web application that allows users to log in, check their balance, and update their personal details. It is developed using Node.js, Next.js, and LowDB, providing an API to manage user operations.
 
-## Características
+## Features
 
-- Iniciar sesión mediante correo electrónico y contraseña.
-- Verificar el saldo del usuario.
-- Actualizar detalles del usuario.
-- API RESTful para manejar las operaciones de usuario.
+- Log in using email and password.
+- Check user balance.
+- Update user details.
+- RESTful API to handle user operations.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 - **Frontend**: React (Next.js)
 - **Backend**: Node.js
-- **Base de Datos**: LowDB
-- **Autenticación**: bcrypt para encriptar contraseñas.
+- **Database**: LowDB
+- **Authentication**: bcrypt for password encryption.
 
 ## URLs
 
-- **Aplicación en Vercel**: [challengecode-eight.vercel.app](https://challengecode-eight.vercel.app/)
+- **Application on Vercel**: [challengecode-eight.vercel.app](https://challengecode-eight.vercel.app/)
 - **API**: 
-  - `GET /api/test` - Verifica que la API está funcionando.
-  - `POST /api/users` - Inicia sesión o registra un nuevo usuario.
-  - `GET /api/users?id={userId}` - Obtiene detalles del usuario.
-  - `PUT /api/users?id={userId}` - Actualiza los detalles del usuario.
+  - `GET /api/test` - Verifies that the API is working.
+  - `POST /api/users` - Logs in or registers a new user.
+  - `GET /api/users?id={userId}` - Retrieves user details.
+  - `PUT /api/users?id={userId}` - Updates user details.
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/mowgly77/challenge-code.git
