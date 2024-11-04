@@ -20,6 +20,34 @@
       "password": "$2a$12$MdvhFbyMnaNxQkyTE/nSP.VBypgqXi3lQ.EIVpdWF9fgte/Ijo27i",
       "name": "Usuario Tres",
       "balance": 300
+    },
+    {
+      "id": "cdd2a06b-e6d2-4143-b9e4-2e5742e283e9",
+      "email": "user11@example.com",
+      "password": "PASSWORD1",
+      "balance": 100,
+      "name": "user11"
+    },
+    {
+      "id": "8e16416f-9a0f-43e6-b92e-649cf3b0e126",
+      "email": "dos@dois.com",
+      "password": "dos",
+      "balance": 100,
+      "name": "dos"
+    },
+    {
+      "id": "0f70ea69-f511-4c9b-bc80-7f9e6bc8d589",
+      "email": "uno@uno.com",
+      "password": "uno",
+      "balance": 100,
+      "name": "uno"
+    },
+    {
+      "id": "594d8905-eda7-4b14-8029-2a2d65a92fac",
+      "email": "cinco@cinco.com",
+      "password": "$2b$10$stVeL85Naat/AX4kBpCv7uCGPzrdh9yFovf/ZCuAePYFMnUFIAsSe",
+      "balance": 300,
+      "name": "cinco"
     }
   ]
 }

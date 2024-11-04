@@ -1,16 +1,36 @@
 // src/app/api/users.ts
 import { NextResponse } from 'next/server';
 import { login, getUserDetails, updateUserDetails, registerUser } from '../../../src/api';
-import  db  from '../../db';
+import db from '../../../src/db';
+import crypto from 'crypto';
 
 export async function POST(req: Request) {
     const body = await req.json();
     console.log('POST /api/users called');
     
-    if (body.email && body.password) {
-        return login(req); 
+    // Buscar si el usuario ya existe
+    const existingUser = db.get('users').find({ email: body.email }).value();
+    
+    if (existingUser) {
+        // Si existe, verificar contraseña y devolver usuario
+        if (existingUser.password === body.password) {
+            return NextResponse.json(existingUser);
+        }
+        return NextResponse.json({ error: 'Credenciales incorrectas' }, { status: 401 });
     } else {
-        return registerUser(req);
+        // Si no existe, crear nuevo usuario
+        const newUser = {
+            id: crypto.randomUUID(),
+            email: body.email,
+            password: body.password,
+            balance: 100
+        };
+        
+        db.get('users')
+            .push(newUser)
+            .write();
+            
+        return NextResponse.json(newUser);
     }
 }
 
@@ -21,24 +41,17 @@ export async function GET(req: Request) {
     if (userId) {
         return getUserDetails(req);
     } else {
-        const users = db.get('users');
-        console.log(users, 'users');
-        return NextResponse.json(users);
+        return NextResponse.json({ error: 'ID de usuario no proporcionado' }, { status: 400 });
     }
 }
 
 export async function PUT(req: Request) {
-    const body = await req.json();
     const { searchParams } = new URL(req.url);
-    const userId = searchParams.get('id') || body.id;
+    const userId = searchParams.get('id');
 
-    if (!userId) {
+    if (userId) {
+        return updateUserDetails(req);
+    } else {
         return NextResponse.json({ error: 'ID de usuario no proporcionado' }, { status: 400 });
-    }
-
-    try {
-        return await updateUserDetails(req);
-    } catch (error) {
-        return NextResponse.json({ error: 'Error al actualizar usuario' }, { status: 500 });
     }
 }

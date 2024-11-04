@@ -35,9 +35,10 @@ export default function Home() {
             console.log('Respuesta:', data);
             
             if (response.ok) {
-                setUserInfo(data); // Almacena la información del usuario
+                setUserInfo(data); // Guardamos toda la información del usuario
                 setShowModal(true); // Muestra el modal con los detalles del usuario
-                setBalance(100); // Establece un saldo de ejemplo
+                setBalance(data.balance || 100); // Establece un saldo de ejemplo
+                setEmail(data.email); // Aseguramos que el email se actualice con los datos del usuario
             } else {
                 alert(data.error || 'Error en el inicio de sesión');
             }
@@ -152,8 +153,9 @@ export default function Home() {
                         <input
                             type="email"
                             placeholder="Nuevo email"
+                            value={email}
                             className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                            onChange={(e) => setEmail(e.target.value)} // Actualiza el nuevo email
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
