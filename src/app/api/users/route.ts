@@ -20,7 +20,7 @@ export async function POST(req: Request) {
                 .assign(updatedUser)
                 .write();
                 
-            const { password: _, ...userWithoutPassword } = updatedUser;
+            const { password: _password, ...userWithoutPassword } = updatedUser;
             return NextResponse.json(userWithoutPassword);
         }
         return NextResponse.json({ error: 'Contraseña incorrecta' }, { status: 401 });
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
         .push(newUser)
         .write();
     
-    const { password: _, ...userWithoutPassword } = newUser;
+    const { password: _password, ...userWithoutPassword } = newUser;
     return NextResponse.json(userWithoutPassword);
 }
 
@@ -70,6 +70,6 @@ export async function PUT(req: Request) {
         .assign(updatedUser)
         .write();
     
-    const { password: _, ...userWithoutPassword } = updatedUser;
+    const { password: _password, ...userWithoutPassword } = updatedUser;
     return NextResponse.json(userWithoutPassword);
 } 
