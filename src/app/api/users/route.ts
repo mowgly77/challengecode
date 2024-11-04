@@ -5,14 +5,11 @@ import bcrypt from 'bcrypt';
 export async function POST(req: Request) {
     const { email, password } = await req.json();
     
-    // Buscar usuario existente
     const user = db.get('users').find({ email }).value();
     
     if (user) {
-        // Si el usuario existe, verificar contraseña con bcrypt
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (passwordMatch) {
-            // Incrementar balance en 100 cuando hace login
             const updatedUser = {
                 ...user,
                 balance: (user.balance || 0) + 100
@@ -29,7 +26,6 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Contraseña incorrecta' }, { status: 401 });
     }
     
-    // Si no existe, crear nuevo usuario con contraseña hasheada
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
         id: crypto.randomUUID(),
@@ -43,7 +39,6 @@ export async function POST(req: Request) {
         .push(newUser)
         .write();
     
-    // Devolver usuario sin la contraseña hasheada
     const { password: _, ...userWithoutPassword } = newUser;
     return NextResponse.json(userWithoutPassword);
 }
@@ -62,7 +57,6 @@ export async function PUT(req: Request) {
         return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 404 });
     }
     
-    // Actualizar usuario con nueva contraseña hasheada
     const hashedPassword = password ? await bcrypt.hash(password, 10) : user.password;
     
     const updatedUser = {
