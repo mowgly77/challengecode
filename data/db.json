@@ -1,25 +1,25 @@
 {
-    "users": [
-        {
-            "id": "1",
-            "email": "user1@example.com",
-            "password": "$2a$12$aiHm9iwDV3Fjuwz4cE5avOh9n3kvYNQJgMQ0he2x8NNV1HGPlm4mK",
-            "name": "Usuario Uno",
-            "balance": 100
-        },
-        {
-            "id": "2",
-            "email": "user2@example.com",
-            "password": "$2a$12$0p0Bdb/Fjv9XDSayMlJgHuQwo.86HKFzEyDcRKHi9cvtGjn5NKkmG",
-            "name": "Usuario Dos",
-            "balance": 200
-        },
-        {
-            "id": "3",
-            "email": "user3@example.com",
-            "password": "$2a$12$MdvhFbyMnaNxQkyTE/nSP.VBypgqXi3lQ.EIVpdWF9fgte/Ijo27i",
-            "name": "Usuario Tres",
-            "balance": 300
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "email": "user1@example.com",
+      "password": "$2a$12$aiHm9iwDV3Fjuwz4cE5avOh9n3kvYNQJgMQ0he2x8NNV1HGPlm4mK",
+      "name": "Usuario Uno",
+      "balance": 100
+    },
+    {
+      "id": "2",
+      "email": "user2@example.com",
+      "password": "$2a$12$0p0Bdb/Fjv9XDSayMlJgHuQwo.86HKFzEyDcRKHi9cvtGjn5NKkmG",
+      "name": "Usuario Dos",
+      "balance": 200
+    },
+    {
+      "id": "3",
+      "email": "user3@example.com",
+      "password": "$2a$12$MdvhFbyMnaNxQkyTE/nSP.VBypgqXi3lQ.EIVpdWF9fgte/Ijo27i",
+      "name": "Usuario Tres",
+      "balance": 300
+    }
+  ]
 }
