@@ -1,6 +1,6 @@
 "use client"; // Agrega esta línea al inicio del archivo
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Define la interfaz para el usuario
 interface User {
@@ -21,39 +21,85 @@ export default function Home() {
     const login = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
-        const response = await fetch('/api/users', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            setUserInfo(data); // Almacena la información del usuario
-            setShowModal(true); // Muestra el modal con los detalles del usuario
-            setBalance(100); // Establece un saldo de ejemplo
-        } else {
-            alert(data.error);
+        console.log('Intentando login con:', { email, password });
+        
+        try {
+            const response = await fetch('/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            
+            console.log('Status:', response.status);
+            const data = await response.json();
+            console.log('Respuesta:', data);
+            
+            if (response.ok) {
+                setUserInfo(data); // Almacena la información del usuario
+                setShowModal(true); // Muestra el modal con los detalles del usuario
+                setBalance(100); // Establece un saldo de ejemplo
+            } else {
+                alert(data.error || 'Error en el inicio de sesión');
+            }
+        } catch (error) {
+            console.error('Error en login:', error);
+            alert('Error al conectar con el servidor');
         }
     };
 
     const handleUpdate = async () => {
-        const updatedData = { email, password }; // Aquí puedes incluir más campos si es necesario
+        if (!userInfo?.id) {
+            alert('No hay usuario seleccionado');
+            return;
+        }
 
-        const response = await fetch('/api/users', {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedData)
-        });
+        const updatedData = {
+            id: userInfo.id,
+            email,
+            password,
+            // Otros campos que quieras actualizar
+        };
 
-        if (response.ok) {
+        try {
+            const response = await fetch(`/api/users?id=${userInfo.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedData)
+            });
+
             const data = await response.json();
-            setUserInfo(data); // Actualiza la información del usuario
-            alert('Detalles actualizados correctamente');
-        } else {
-            alert('Error al actualizar los detalles');
+            console.log('Respuesta de actualización:', data);
+
+            if (response.ok) {
+                setUserInfo(data);
+                alert('Detalles actualizados correctamente');
+            } else {
+                alert(data.error || 'Error al actualizar los detalles');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al conectar con el servidor');
         }
     };
+
+    // Agregar función para cargar usuarios
+    const loadUsers = async () => {
+        try {
+            const response = await fetch('/api/users');
+            if (response.ok) {
+                const users = await response.json();
+                console.log('Usuarios cargados:', users);
+                // Aquí puedes mostrar los usuarios en tu interfaz
+            }
+        } catch (error) {
+            console.error('Error al cargar usuarios:', error);
+        }
+    };
+
+    // Agregar useEffect para cargar usuarios al inicio
+    useEffect(() => {
+        loadUsers();
+    }, []);
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
