@@ -20,26 +20,6 @@
       "password": "$2a$12$MdvhFbyMnaNxQkyTE/nSP.VBypgqXi3lQ.EIVpdWF9fgte/Ijo27i",
       "name": "Usuario Tres",
       "balance": 300
-    },
-    {
-      "email": "",
-      "password": ""
-    },
-    {
-      "email": "user1@example.com",
-      "password": "PASSWORD1"
-    },
-    {
-      "email": "user1@example.com",
-      "password": "PASSWORD1"
-    },
-    {
-      "email": "ASDASD@ASDASD.COM",
-      "password": "ASDASD"
-    },
-    {
-      "email": "user1@example.com",
-      "password": "PASSWORD1"
     }
   ]
 }
