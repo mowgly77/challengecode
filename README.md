@@ -4,7 +4,7 @@
 
 Challenge Code is a web application that allows users to log in, check their balance, and update their personal details. It is developed using Node.js, Next.js, and LowDB, providing an API to manage user operations.
 
-## Features
+## Features.
 
 - Log in using email and password.
 - Check user balance.
